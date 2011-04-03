@@ -474,6 +474,9 @@ view_attach(View *v, Frame *f) {
 	if(c->sel == nil)
 		c->sel = f;
 	view_update(v);
+
+	if (v == selview && !a->floating)
+		event("ArrangeView\n");
 }
 
 void
@@ -483,6 +486,9 @@ view_detach(Frame *f) {
 
 	v = f->view;
 	c = f->client;
+
+	if (v == selview && !f->area->floating)
+		event("ArrangeView\n");
 
 	area_detach(f);
 	if(c->sel == f)

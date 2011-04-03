@@ -218,6 +218,9 @@ area_moveto(Area *to, Frame *f) {
 
 	area_detach(f);
 
+	if(from->floating ^ to->floating)
+		event("ArrangeView\n");
+
 	/* Temporary kludge. */
 	if(!to->floating
 	&& to->floating != from->floating
