@@ -30,7 +30,7 @@ sizehint(WinHints *h, Rectangle r) {
 
 	aspect = h->aspect.min;
 	if(p.x * aspect.y / p.y < aspect.x)
-		r.max.y = h->baspect.y
+		r.max.y = 1 + h->baspect.y
 			+ p.x * aspect.y / aspect.x;
 
 	aspect = h->aspect.max;
