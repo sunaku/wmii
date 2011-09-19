@@ -162,7 +162,7 @@ client_create(XWindow w, XWindowAttributes *wa) {
 
 	ewmh_initclient(c);
 
-	event("CreateClient %#C\n", c);
+	event("CreateClient %#C %s\n", c, c->props);
 	client_manage(c);
 	return c;
 }
