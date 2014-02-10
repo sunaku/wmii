@@ -70,9 +70,10 @@ event_focusout(XFocusChangeEvent *ev) {
 	if(ev->mode == NotifyUngrab)
 		disp.hasgrab = nil;
 
-	if((ev->mode == NotifyGrab)
-	&& XCheckMaskEvent(display, KeyPressMask, &me))
-		event_dispatch(&me);
+	if(ev->mode == NotifyGrab) {
+		if (XCheckMaskEvent(display, KeyPressMask, &me))
+			event_dispatch(&me);
+	}
 	else if((w = findwin(ev->window)))
 		event_handle(w, focusout, ev);
 }
